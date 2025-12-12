@@ -47,24 +47,51 @@ export const createSlide = (req, res) => {
   });
 };
 
-// UPDATE slide
 export const updateSlide = (req, res) => {
   const { id } = req.params;
-  const { title, subtitle, order_position, is_active } = req.body;
-  const image = req.file ? `/uploads/${req.file.filename}` : req.body.image;
+  const { title, subtitle } = req.body;
 
-  const query = "UPDATE slides SET title = ?, subtitle = ?, image = ?, order_position = ?, is_active = ? WHERE id = ?";
-  
-  db.query(query, [title, subtitle, image, order_position, is_active, id], (err, result) => {
-    if (err) {
-      return res.status(500).json({ msg: "Gagal update slide", error: err });
-    }
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ msg: "Slide tidak ditemukan" });
-    }
-    res.json({ msg: "Slide berhasil diupdate" });
+  db.query("SELECT * FROM slides WHERE id = ?", [id], (err, results) => {
+    if (err) return res.status(500).json({ msg: "Database error", error: err });
+    if (results.length === 0) return res.status(404).json({ msg: "Slide tidak ditemukan" });
+
+    const old = results[0];
+
+    // Tentukan gambar lama atau baru
+    const image = req.file ? `/uploads/${req.file.filename}` : old.image;
+
+    // FIX PALING PENTING
+    const order_position = req.body.order_position ?? old.order_position;
+    const is_active = req.body.is_active ?? old.is_active;
+
+    const query = `
+      UPDATE slides
+      SET title=?, subtitle=?, image=?, order_position=?, is_active=?
+      WHERE id=?
+    `;
+
+    db.query(
+      query,
+      [title, subtitle, image, order_position, is_active, id],
+      (err2) => {
+        if (err2) return res.status(500).json({ msg: "Gagal update slide", error: err2 });
+
+        res.json({
+          msg: "Slide berhasil diupdate",
+          data: {
+            id,
+            title,
+            subtitle,
+            image,
+            order_position,
+            is_active
+          }
+        });
+      }
+    );
   });
 };
+
 
 // DELETE slide
 export const deleteSlide = (req, res) => {
