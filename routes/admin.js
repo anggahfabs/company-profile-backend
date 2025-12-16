@@ -49,7 +49,7 @@ router.get(
   verifyToken,
   contactController.getContactMessages
 );
-
+router.get("/messages/count", verifyToken, contactController.getMessagesCount)
 
 // ===== SOCIAL MEDIA ROUTES =====
 router.get("/social-media", socialMediaController.getSocialMedia);

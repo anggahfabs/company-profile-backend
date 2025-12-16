@@ -122,3 +122,19 @@ export const getContactMessages = (req, res) => {
   });
 };
 
+// GET total pesan (untuk badge)
+export const getMessagesCount = (req, res) => {
+  const query = `
+    SELECT COUNT(*) AS total
+    FROM contact_messages
+  `
+
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).json({ msg: "Database error", error: err })
+    }
+
+    res.json({ total: results[0].total })
+  })
+}
+
