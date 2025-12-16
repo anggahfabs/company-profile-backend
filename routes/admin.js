@@ -44,12 +44,11 @@ router.get("/contact", contactController.getContactInfo);
 router.post("/contact", verifyToken, contactController.createContactInfo);
 router.put("/contact/:id", verifyToken, contactController.updateContactInfo);
 // ===== CONTACT MESSAGES (ADMIN) =====
-router.get(
-  "/messages",
-  verifyToken,
-  contactController.getContactMessages
-);
-router.get("/messages/count", verifyToken, contactController.getMessagesCount)
+router.get("/messages",verifyToken, contactController.getContactMessages);
+router.get("/messages/count", verifyToken, contactController.getMessagesCount);
+router.get("/messages/unread", verifyToken, contactController.getUnreadMessageCount);
+router.put("/messages/:id/read", contactController.markMessageAsRead);
+
 
 // ===== SOCIAL MEDIA ROUTES =====
 router.get("/social-media", socialMediaController.getSocialMedia);

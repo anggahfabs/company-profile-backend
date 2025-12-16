@@ -96,16 +96,7 @@ export const createContactMessage = (req, res) => {
 // GET contact messages (for admin)
 export const getContactMessages = (req, res) => {
   const query = `
-    SELECT
-      id,
-      name,
-      email,
-      phone,
-      company,
-      event_type,
-      event_info,
-      message,
-      created_at
+    SELECT *
     FROM contact_messages
     ORDER BY created_at DESC
   `;
@@ -137,4 +128,38 @@ export const getMessagesCount = (req, res) => {
     res.json({ total: results[0].total })
   })
 }
+
+// Hitung Unread (badge)
+export const getUnreadMessageCount = (req, res) => {
+  const query = `
+    SELECT COUNT(*) AS total
+    FROM contact_messages
+    WHERE is_read = 0
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).json({ msg: "Gagal hitung pesan", error: err });
+    }
+    res.json({ total: results[0].total });
+  });
+};
+
+// MARK AS READ
+export const markMessageAsRead = (req, res) => {
+  const { id } = req.params;
+
+  const query = `
+    UPDATE contact_messages
+    SET is_read = 1
+    WHERE id = ?
+  `;
+
+  db.query(query, [id], (err) => {
+    if (err) {
+      return res.status(500).json({ msg: "Gagal update status pesan" });
+    }
+    res.json({ msg: "Pesan ditandai sebagai dibaca" });
+  });
+};
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 11, 2025 at 10:39 PM
+-- Generation Time: Dec 16, 2025 at 10:15 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -46,6 +46,38 @@ CREATE TABLE `contact_info` (
 
 INSERT INTO `contact_info` (`id`, `address`, `phone`, `whatsapp`, `email`, `open_hours`, `weekday_hours`, `saturday_hours`, `sunday_hours`, `updated_at`) VALUES
 (3, 'PV74+8GP Batu Ampar, East Jakarta City, Jakarta', '08765432112345', '+62-876-5432-1123', 'company@gmail.com', 'Senin - Jumat 09:00 - 17:00', '09-00 - 17:00', '10:00 - 16:00', 'By Appointment', '2025-12-11 12:21:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_messages`
+--
+
+CREATE TABLE `contact_messages` (
+  `id` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  `event_type` varchar(50) DEFAULT NULL,
+  `event_info` varchar(150) DEFAULT NULL,
+  `message` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `contact_messages`
+--
+
+INSERT INTO `contact_messages` (`id`, `name`, `email`, `phone`, `company`, `event_type`, `event_info`, `message`, `is_read`, `created_at`) VALUES
+(7, 'w', 'w@gmail.com', '123', 'test', 'Concert', 'ads', '123', 1, '2025-12-16 13:08:10'),
+(8, 'zzz', '123a@gmail.com', '123', 'xyz', 'Gala Dinner', 'zz', 'zzz', 1, '2025-12-16 13:10:38'),
+(9, 'test23', 'test23@gmail.com', '123123', 'awdawd', 'Wedding', 'Jakarta- Mei 2026', 'awdtest23', 1, '2025-12-16 13:25:54'),
+(10, 'awd', 'asd@gmail.com', '+62812398798', 'asd@gmail.com', 'Wedding', 'Jakarta Mei 2029', 'adw', 1, '2025-12-16 13:35:34'),
+(11, 'test pagi', 'test@gmail.com', '123123123', 'wda', 'Wedding', 'Jakarta Juli 2026', 'awd', 1, '2025-12-16 21:31:21'),
+(12, 'test4', 'test4@gmail.com', '123', 'aaa', 'Corporate Event', 'aaa', 'aa', 1, '2025-12-16 21:36:13'),
+(13, 'q', 'Q@gmail.com', '1', 'q', 'Gala Dinner', 'q', 'q', 0, '2025-12-16 21:47:12');
 
 -- --------------------------------------------------------
 
@@ -232,6 +264,12 @@ ALTER TABLE `contact_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -285,6 +323,12 @@ ALTER TABLE `contact_info`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `maps`
 --
 ALTER TABLE `maps`
@@ -306,7 +350,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `social_media`
