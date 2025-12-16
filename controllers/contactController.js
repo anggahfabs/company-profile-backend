@@ -47,3 +47,78 @@ export const createContactInfo = (req, res) => {
     });
   });
 };
+
+// text Contact form
+// CREATE contact message (from visitor)
+export const createContactMessage = (req, res) => {
+  const {
+    name,
+    email,
+    phone,
+    company,
+    event_type,
+    event_info,
+    message
+  } = req.body;
+
+  // validasi minimal
+  if (!name || !email || !message) {
+    return res.status(400).json({
+      msg: "Nama, email, dan pesan wajib diisi"
+    });
+  }
+
+  const query = `
+    INSERT INTO contact_messages
+    (name, email, phone, company, event_type, event_info, message)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    query,
+    [name, email, phone, company, event_type, event_info, message],
+    (err, result) => {
+      if (err) {
+        return res.status(500).json({
+          msg: "Gagal menyimpan pesan",
+          error: err
+        });
+      }
+
+      res.status(201).json({
+        msg: "Pesan berhasil dikirim",
+        id: result.insertId
+      });
+    }
+  );
+};
+
+// GET contact messages (for admin)
+export const getContactMessages = (req, res) => {
+  const query = `
+    SELECT
+      id,
+      name,
+      email,
+      phone,
+      company,
+      event_type,
+      event_info,
+      message,
+      created_at
+    FROM contact_messages
+    ORDER BY created_at DESC
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).json({
+        msg: "Gagal mengambil pesan pengunjung",
+        error: err
+      });
+    }
+
+    res.json(results);
+  });
+};
+

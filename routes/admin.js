@@ -8,6 +8,7 @@ import * as servicesController from "../controllers/servicesController.js";
 import * as teamController from "../controllers/teamController.js";
 import * as projectsController from "../controllers/projectsController.js";
 import * as contactController from "../controllers/contactController.js";
+
 import * as socialMediaController from "../controllers/socialMediaController.js";
 import * as mapsController from "../controllers/mapsController.js";
 
@@ -42,6 +43,13 @@ router.delete("/projects/:id", verifyToken, projectsController.deleteProject);
 router.get("/contact", contactController.getContactInfo);
 router.post("/contact", verifyToken, contactController.createContactInfo);
 router.put("/contact/:id", verifyToken, contactController.updateContactInfo);
+// ===== CONTACT MESSAGES (ADMIN) =====
+router.get(
+  "/messages",
+  verifyToken,
+  contactController.getContactMessages
+);
+
 
 // ===== SOCIAL MEDIA ROUTES =====
 router.get("/social-media", socialMediaController.getSocialMedia);
