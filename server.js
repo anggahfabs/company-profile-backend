@@ -68,7 +68,7 @@ app.get("/api/test-db", async (req, res) => {
 
 // ===== TEST ROUTE =====
 app.get("/", (req, res) => {
-  res.send("Backend sudah berjalan!");
+  res.send("BACKEND VERSI 2 - DATABASE CHECK READY");
 });
 
 // ===== START SERVER =====
