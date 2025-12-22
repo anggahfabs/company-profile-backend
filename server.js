@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import authRoutes from "./routes/authRoutes.js";
 import adminRoutes from "./routes/admin.js";
 import contactRoutes from "./routes/contact.js";
+import testDbRoutes from "./routes/testDb.js"; // New Route
 
 
 const app = express();
@@ -31,6 +32,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api", contactRoutes);
+app.use("/api/test-db", testDbRoutes); // Register Route
 
 
 // ===== TEST ROUTE =====
