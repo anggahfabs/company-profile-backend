@@ -8,4 +8,4 @@ USERNAME: 4RHAA9wLvp4HsZ7.root
 
 PASSWORD: ZqnI9GLKkfsbSr84
 
-DATABASE: test/ company_profile
+DATABASE: company_profile
