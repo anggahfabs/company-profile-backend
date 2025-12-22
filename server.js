@@ -5,24 +5,34 @@ import path from "path";
 import { fileURLToPath } from "url";
 // import db moved inside route 
 
-// import authRoutes from "./routes/authRoutes.js";
-// import adminRoutes from "./routes/admin.js";
-// import contactRoutes from "./routes/contact.js";
+import authRoutes from "./routes/authRoutes.js";
+import adminRoutes from "./routes/admin.js";
+import contactRoutes from "./routes/contact.js";
 
 const app = express();
-app.set('trust proxy', 1); // Trust Vercel Proxy
+app.set('trust proxy', 1);
 
-// ... (middleware) ...
+// ===== FIX __dirname untuk ES Modules =====
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ===== MIDDLEWARE =====
+app.use(cors({
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}));
+app.options('*', cors());
+app.use(bodyParser.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ===== ROUTES =====
-// app.use("/api/auth", authRoutes);
-// app.use("/api/admin", adminRoutes);
-// app.use("/api", contactRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api", contactRoutes);
 
-
-// ===== TEST ROUTE =====
-// ===== DEBUG DB ROUTE DIRECT =====
-
+// ===== TEST DB ROUTE (STAYS FOR DEBUG) =====
 app.get("/api/test-db", async (req, res) => {
   try {
     const { default: db } = await import("./config/db.js");
@@ -42,12 +52,7 @@ app.get("/api/test-db", async (req, res) => {
     res.status(500).json({
       status: "FAILED",
       message: error.message,
-      code: error.code,
-      config_used: {
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        user: process.env.DB_USER
-      }
+      config_used: { host: process.env.DB_HOST }
     });
   }
 });
