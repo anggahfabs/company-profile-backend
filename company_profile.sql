@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 16, 2025 at 10:15 PM
+-- Generation Time: Dec 22, 2025 at 12:48 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -77,7 +77,9 @@ INSERT INTO `contact_messages` (`id`, `name`, `email`, `phone`, `company`, `even
 (10, 'awd', 'asd@gmail.com', '+62812398798', 'asd@gmail.com', 'Wedding', 'Jakarta Mei 2029', 'adw', 1, '2025-12-16 13:35:34'),
 (11, 'test pagi', 'test@gmail.com', '123123123', 'wda', 'Wedding', 'Jakarta Juli 2026', 'awd', 1, '2025-12-16 21:31:21'),
 (12, 'test4', 'test4@gmail.com', '123', 'aaa', 'Corporate Event', 'aaa', 'aa', 1, '2025-12-16 21:36:13'),
-(13, 'q', 'Q@gmail.com', '1', 'q', 'Gala Dinner', 'q', 'q', 0, '2025-12-16 21:47:12');
+(13, 'q', 'Q@gmail.com', '1', 'q', 'Gala Dinner', 'q', 'q', 1, '2025-12-16 21:47:12'),
+(14, 's', 's@gmail.com', '123', '123', 'Product Launch', 'Jakarta s', 's', 1, '2025-12-16 22:22:54'),
+(15, 'Tester', 'tester@gmail.com', '12345', 'Tester ', 'Activation / Pop-up', 'Jakarta - 30 Mei 2026', 'Test kebutuhan', 1, '2025-12-19 13:18:35');
 
 -- --------------------------------------------------------
 
@@ -119,12 +121,12 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `title`, `description`, `image`, `category`, `created_at`) VALUES
-(5, 'Glow Festival 2025', 'vent musik elektronik dengan 5.000+ pengunjung, termasuk stage design dan lighting', '/uploads/1765455982202-767286213.jpg', 'Music & Festival', '2025-12-11 12:26:22'),
-(6, 'Corporate Gathering PT XYZ', 'Gathering perusahaan outdoor teambuilding di Bandung.', '/uploads/1765456624426-845084440.jpg', 'Corporate & Seminar', '2025-12-11 12:37:04'),
-(7, 'Wedding Expo Jakarta 2024', 'Pameran pernikahan terbesar Jakarta, handle booth & flow acara.', '/uploads/1765457467848-397971925.jpg', 'Exhibition & Wedding', '2025-12-11 12:51:07'),
-(8, 'Tech Innovation Summit 2025', 'Corporate & Seminar', '/uploads/1765457589953-949996866.jpg', 'Konferensi teknologi 50+ speaker, 1.200 peserta.', '2025-12-11 12:53:09'),
-(9, 'Charity Run “Run for Hope', 'Lari amal dengan sponsorship, merchandise & dokumentasi.', '/uploads/1765457641420-931036528.jpg', 'Exhibition & Charity', '2025-12-11 12:54:01'),
-(10, 'Fashion Week 2025', 'Stage, catwalk & lighting untuk 15 desainer lokal.', '/uploads/1765457720986-64119583.jpg', 'Music & Festival', '2025-12-11 12:55:21');
+(5, 'Glow Festival 2025', 'electronic music event with over 5,000 visitors, including stage design and lighting', '/uploads/1765455982202-767286213.jpg', 'Music & Festival', '2025-12-11 12:26:22'),
+(6, 'Corporate Gathering PT XYZ', 'Outdoor team-building gathering in Bandung.', '/uploads/1765456624426-845084440.jpg', 'Corporate & Seminar', '2025-12-11 12:37:04'),
+(7, 'Wedding Expo Jakarta 2024', 'Jakarta\'s largest wedding exhibition, handle booths and event flow.', '/uploads/1765457467848-397971925.jpg', 'Exhibition & Wedding', '2025-12-11 12:51:07'),
+(8, 'Tech Innovation Summit 2025', 'Corporate & Seminar', '/uploads/1765457589953-949996866.jpg', 'Technology conference with over 50 speakers and 1,200 participants.', '2025-12-11 12:53:09'),
+(9, 'Charity Run “Run for Hope', 'Charity run with sponsorship, merchandise and documentation.', '/uploads/1765457641420-931036528.jpg', 'Exhibition & Charity', '2025-12-11 12:54:01'),
+(10, 'Fashion Week 2026', 'Stage, catwalk and lighting for 15 local designers.', '/uploads/1765957087171-87639754.jpg', 'Music & Festival', '2025-12-11 12:55:21');
 
 -- --------------------------------------------------------
 
@@ -145,12 +147,12 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `title`, `description`, `icon`, `created_at`) VALUES
-(5, 'Event Planning', 'Perencanaan acara mulai dari konsep, timeline, hingga anggaran.', '🧮', '2025-12-11 13:03:08'),
-(6, 'Event Production', 'Menangani teknis acara, lighting, sound, stage, dan dekorasi', '🖥', '2025-12-11 13:04:16'),
-(7, 'Corporate Event Management', 'Pengelolaan acara perusahaan seperti seminar, gathering, dan workshop', '📠', '2025-12-11 13:04:47'),
-(8, 'Wedding & Private Party Organizer', 'Menyediakan paket lengkap untuk pernikahan dan acara pribadi', '💒', '2025-12-11 13:05:09'),
-(9, 'Marketing & Promotion', 'Strategi promosi, social media, dan branding untuk event', '💰', '2025-12-11 13:05:57'),
-(10, 'Talent & Artist Management', 'Menyediakan MC, performer, dan talent sesuai kebutuhan acara.', '🎭', '2025-12-11 13:06:20');
+(5, 'Event Planning', 'Event planning, from concept and timeline to budget.', '🧮', '2025-12-11 13:03:08'),
+(6, 'Event Production', 'Handling technical aspects of events, lighting, sound, stage, and decoration', '🖥', '2025-12-11 13:04:16'),
+(7, 'Corporate Event Management', 'Management of corporate events such as seminars, gatherings, and workshops', '📠', '2025-12-11 13:04:47'),
+(8, 'Wedding & Private Party Organizer', 'Providing complete packages for weddings and private events', '💒', '2025-12-11 13:05:09'),
+(9, 'Marketing & Promotion', 'Promotional, social media, and branding strategies for events', '💰', '2025-12-11 13:05:57'),
+(10, 'Talent & Artist Management', 'Providing MCs, performers, and talent according to event requirements.', '🎭', '2025-12-11 13:06:20');
 
 -- --------------------------------------------------------
 
@@ -225,12 +227,12 @@ CREATE TABLE `team` (
 --
 
 INSERT INTO `team` (`id`, `name`, `position`, `photo`, `bio`, `instagram`, `tiktok`, `created_at`) VALUES
-(3, 'Andi Pratama', 'CEO & Founder', '/uploads/1765458536459-121381268.jpg', 'Memimpin agency dengan visi inovatif, berpengalaman 10+ tahun di industri event', 'https://www.instagram.com', 'https://www.tiktok.com/', '2025-12-11 09:43:00'),
-(4, 'Sarah Cameron', 'Creative Director', '/uploads/1765458676605-356165806.jpg', 'Ahli desain konsep acara dan branding, memastikan setiap event unik dan memorable.', 'https://www.instagram.com/madelyncline/', 'https://www.tiktok.com/', '2025-12-11 13:11:16'),
-(5, 'JJ Maybank', 'Event Manager', '/uploads/1765458819297-67501585.jpg', 'Spesialis manajemen operasional acara dari skala kecil hingga besar.', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:13:39'),
-(6, 'Pope', 'Marketing & PR', '/uploads/1765458903434-739192959.jpg', 'Mengatur strategi promosi dan media untuk meningkatkan engagement event.', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:15:03'),
-(7, 'Kiara', 'Production Head', '/uploads/1765458977776-828024685.jpg', 'Bertanggung jawab pada teknis produksi, stage, lighting, dan sound system.', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:16:10'),
-(8, 'Rafe Cameron', 'Finance & Admin', '/uploads/1765459724071-735422709.jpg', 'Mengelola administrasi dan anggaran agar semua event berjalan lancar.', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:28:44');
+(3, 'Andi Pratama', 'CEO & Founder', '/uploads/1765458536459-121381268.jpg', 'Leading agency with innovative vision, 10+ years experience in the event industry', 'https://www.instagram.com', 'https://www.tiktok.com/', '2025-12-11 09:43:00'),
+(4, 'Sarah Cameron', 'Creative Director', '/uploads/1765458676605-356165806.jpg', 'Experts in event concept design and branding, ensuring every event is unique and memorable.', 'https://www.instagram.com/madelyncline/', 'https://www.tiktok.com/', '2025-12-11 13:11:16'),
+(5, 'JJ Maybank', 'Event Manager', '/uploads/1765458819297-67501585.jpg', 'Specialist in operational management of events from small to large scale.', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:13:39'),
+(6, 'Pope', 'Marketing & PR', '/uploads/1765458903434-739192959.jpg', 'Develop promotional and media strategies to increase attendee engagement in the event.', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:15:03'),
+(7, 'Kiara', 'Production Head', '/uploads/1765458977776-828024685.jpg', 'Responsible for technical production, stage, lighting, and sound system.', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:16:10'),
+(8, 'Rafe Cameron', 'Finance & Admin', '/uploads/1765459724071-735422709.jpg', 'Manage administration and budget to ensure all events run smoothly', 'https://www.instagram.com/', 'https://www.tiktok.com/', '2025-12-11 13:28:44');
 
 -- --------------------------------------------------------
 
@@ -326,7 +328,7 @@ ALTER TABLE `contact_info`
 -- AUTO_INCREMENT for table `contact_messages`
 --
 ALTER TABLE `contact_messages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `maps`
