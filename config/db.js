@@ -17,20 +17,11 @@ const db = mysql.createPool({
 });
 
 // DEBUG: Cek apakah variable terbaca (Jangan print password!)
-console.log("🔍 Checking DB Config...");
-console.log("Host:", process.env.DB_HOST ? process.env.DB_HOST : "UNDEFINED");
-console.log("Port:", process.env.DB_PORT ? process.env.DB_PORT : "UNDEFINED");
-console.log("User:", process.env.DB_USER ? process.env.DB_USER : "UNDEFINED");
-console.log("SSL:", process.env.DB_SSL ? "enabled" : "disabled");
-
-// Test koneksi saat pertama kali deploy
-db.getConnection((err, connection) => {
-  if (err) {
-    console.error("❌ FATAL: Database Connection Failed!", err.code, err.message);
-  } else {
-    console.log("✅ Database Connected Successfully!");
-    connection.release();
-  }
+console.log("🔍 DB Config Check:", {
+  host: process.env.DB_HOST ? "Exists" : "MISSING",
+  port: process.env.DB_PORT || "Default 3306",
+  user: process.env.DB_USER ? "Exists" : "MISSING",
+  ssl: process.env.DB_SSL
 });
 
 export default db;
