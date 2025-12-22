@@ -11,6 +11,7 @@ import contactRoutes from "./routes/contact.js";
 
 
 const app = express();
+app.set('trust proxy', 1); // Trust Vercel Proxy
 
 // ===== FIX __dirname untuk ES Modules =====
 const __filename = fileURLToPath(import.meta.url);
