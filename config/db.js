@@ -8,12 +8,14 @@ const db = mysql.createPool({
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "company_profile",
-  port: Number(process.env.DB_PORT) || 3306,
-  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined, // Relax SSL for debugging
+  port: Number(process.env.DB_PORT) || 4000,
+  ssl: {
+    rejectUnauthorized: false
+  },
   waitForConnections: true,
-  connectionLimit: 5,
+  connectionLimit: 2, // Kecilin limit buat serverless
   queueLimit: 0,
-  connectTimeout: 20000 // 20 detik timeout
+  connectTimeout: 10000 // 10 detik
 });
 
 // DEBUG: Cek apakah variable terbaca (Jangan print password!)
