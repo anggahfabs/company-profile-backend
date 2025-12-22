@@ -3,36 +3,21 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
-import db from "./config/db.js"; // Import DB
+// import db moved inside route 
 
-import authRoutes from "./routes/authRoutes.js";
-import adminRoutes from "./routes/admin.js";
-import contactRoutes from "./routes/contact.js";
-
+// import authRoutes from "./routes/authRoutes.js";
+// import adminRoutes from "./routes/admin.js";
+// import contactRoutes from "./routes/contact.js";
 
 const app = express();
 app.set('trust proxy', 1); // Trust Vercel Proxy
 
-// ===== FIX __dirname untuk ES Modules =====
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// ===== MIDDLEWARE =====
-// ===== MIDDLEWARE =====
-app.use(cors({
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-}));
-app.options('*', cors()); // Enable pre-flight for all routes
-app.use(bodyParser.json());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// ... (middleware) ...
 
 // ===== ROUTES =====
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api", contactRoutes);
+// app.use("/api/auth", authRoutes);
+// app.use("/api/admin", adminRoutes);
+// app.use("/api", contactRoutes);
 
 
 // ===== TEST ROUTE =====
@@ -40,6 +25,7 @@ app.use("/api", contactRoutes);
 
 app.get("/api/test-db", async (req, res) => {
   try {
+    const { default: db } = await import("./config/db.js");
     const promisePool = db.promise();
     const [rows] = await promisePool.query("SELECT 1 as val");
     res.json({
