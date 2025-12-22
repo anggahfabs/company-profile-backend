@@ -3,11 +3,11 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
+import db from "./config/db.js"; // Import DB
 
 import authRoutes from "./routes/authRoutes.js";
 import adminRoutes from "./routes/admin.js";
 import contactRoutes from "./routes/contact.js";
-import testDbRoutes from "./routes/testDb.js"; // New Route
 
 
 const app = express();
@@ -32,8 +32,38 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api", contactRoutes);
-app.use("/api/test-db", testDbRoutes); // Register Route
 
+
+// ===== TEST ROUTE =====
+// ===== DEBUG DB ROUTE DIRECT =====
+
+app.get("/api/test-db", async (req, res) => {
+  try {
+    const promisePool = db.promise();
+    const [rows] = await promisePool.query("SELECT 1 as val");
+    res.json({
+      status: "SUCCESS",
+      message: "Database Connected!",
+      config_used: {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        user: process.env.DB_USER,
+        db: process.env.DB_NAME
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "FAILED",
+      message: error.message,
+      code: error.code,
+      config_used: {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        user: process.env.DB_USER
+      }
+    });
+  }
+});
 
 // ===== TEST ROUTE =====
 app.get("/", (req, res) => {
