@@ -11,4 +11,12 @@ const db = mysql.createConnection({
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : undefined
 });
 
+db.connect((err) => {
+  if (err) {
+    console.error("❌ Database connection failed:", err.message);
+  } else {
+    console.log("✅ Connected to database successfully");
+  }
+});
+
 export default db;

@@ -23,6 +23,7 @@ app.use(cors({
   preflightContinue: false,
   optionsSuccessStatus: 204
 }));
+app.options('*', cors()); // Enable pre-flight for all routes
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
